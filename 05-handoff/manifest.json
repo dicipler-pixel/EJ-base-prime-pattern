@@ -1,0 +1,453 @@
+{
+ "package": "ej-review-pack",
+ "revision": "7",
+ "frozen": "2026-11-05",
+ "note": "Revision 7: adds Section 6 Delays on the wheel (free hues, return delays, memory by lag, null checks), free_hues lemmas, delay_check.py. See CHANGES.md.",
+ "framework": {
+  "author": "Elizabeth Johnson",
+  "handle": "@Ellyrox110",
+  "title": "EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model",
+  "doi": "10.5281/zenodo.23378596"
+ },
+ "joint_results": {
+  "authors": [
+   "Elizabeth Johnson",
+   "Jeromie Beasley"
+  ],
+  "claims": [
+   "census: admissible residue words of length n number 3^(n+1)-2^(n+1); every word realised from a twin start >= 11 is admissible (converse not claimed; observed for n<=5)",
+   "only mod 5 obstructs: mod 2 and mod 3 never form a complete residue system",
+   "digit exclusivity (classical): a twin start a>5 ends in 1, 7 or 9",
+   "junction (classical): p-2, p, p+2 all prime forces p = 5",
+   "equilibrium obstruction: d_k = d_{k+1} impossible in cells 1->7, 7->1, 9->1, 9->7",
+   "coprimality test confirms only below p^2 (first failure 49 at the 30-wheel)",
+   "wheel: Z/2p = Z/2 x Z/p (layer, hue); units rotate hue; complement = half turn; twin pairs above 5 avoid the grey hue (necessary, not sufficient)",
+   "colour at scale: at 10^k the primaries never split and other colours gain k, k, k^2 shades; zooming keeps the oriented coarse hue order; each zoom offers 4 then 5 refinements; the circle of 2 is coherent at every scale",
+   "delays: twin delay h leaves free hues 3,1,2,2,1 (h mod 5); Hardy-Littlewood predicts these as weights, fit within 0.2 points over all pairs (measured); return delays have mean 4 but suppressed immediate return (measured)"
+  ]
+ },
+ "verification": {
+  "lean_toolchain": "leanprover/lean4:v4.33.0",
+  "mathlib": "commit db584cd6d46c92f209a44c0f1c829460d327499d (checked out from tag v4.33.0)",
+  "lean_files": [
+   "02-lean/Census.lean",
+   "02-lean/EJPrime.lean",
+   "02-lean/Wheel.lean"
+  ],
+  "command": "lake env lean <file>  (inside a Lake project that depends on Mathlib)",
+  "expected_stdout": {
+   "02-lean/Census.lean": [
+    "[1, 5, 19, 65, 211, 665]",
+    "'EJCensus.census' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'EJCensus.census_words' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'EJCensus.cover_iff' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'EJCensus.realised_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]"
+   ],
+   "02-lean/EJPrime.lean": [
+    "'EJPrime.not_prime_add_two' depends on axioms: [propext, Quot.sound]",
+    "'EJPrime.seven_of_ends_seven' depends on axioms: [propext, Quot.sound]",
+    "'EJPrime.junction_unique' depends on axioms: [propext, Quot.sound]",
+    "'EJPrime.forbidden_cells' depends on axioms: [propext]",
+    "'EJPrime.permitted_cells' depends on axioms: [propext]",
+    "'EJPrime.twin_start_digit' depends on axioms: [propext, Quot.sound]",
+    "'EJPrime.equilibrium_obstruction' depends on axioms: [propext, Quot.sound]"
+   ],
+   "02-lean/Wheel.lean": [
+    "'EJWheel.layer_hue_determine' does not depend on any axioms",
+    "'EJWheel.orbit_iff_gcd' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'EJWheel.units_fix_layer' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'EJWheel.quarter_turn' depends on axioms: [propext]",
+    "'EJWheel.complement_is_neg' depends on axioms: [propext]",
+    "'EJWheel.add_five' depends on axioms: [propext]",
+    "'EJWheel.twin_hue' depends on axioms: [propext, Quot.sound]",
+    "'EJWheel.twin_start_digit' depends on axioms: [propext, Quot.sound]",
+    "'EJWheel.coarse_of_fine' does not depend on any axioms",
+    "'EJWheel.nine_classes' depends on axioms: [propext, Quot.sound]",
+    "'EJWheel.two_generates_mod25' depends on axioms: [propext]",
+    "'EJWheel.fine_projects_to_coarse' depends on axioms: [propext]",
+    "'EJWheel.generators_mod25' depends on axioms: [propext, Quot.sound]",
+    "'EJWheel.generators_reduce' does not depend on any axioms",
+    "'EJWheel.lifts_mod125' depends on axioms: [propext]",
+    "'EJWheel.free_hues' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'EJWheel.free_hues_eq' depends on axioms: [propext, Classical.choice, Quot.sound]"
+   ]
+  },
+  "forbidden": "sorryAx",
+  "status_at_freeze": "All three Lean files compiled by the preparer at freeze (Lean 4.33.0, Mathlib db584cd): no errors, warnings or sorry; expected_stdout is that verbatim output. verify_all.py: ALL PASS 24/24. scale_check.py and delay_check.py reproduce every Section 5.4 and Section 6 figure. Independent AI referee passes on rev 4, rev 5 and the rev 6 section; findings addressed, see CHANGES.md."
+ },
+ "forbidden_phrases": [
+  "No prime above 3 ends in 3; no prime above 7",
+  "realised by the primes if and only if",
+  "is reachable iff",
+  "occurs iff its difference set",
+  "Every $d_i\\equiv0\\pmod{30}$",
+  "Every $d_i \\equiv 0\\pmod{30}$",
+  "are exactly the configurations that avoid",
+  "forced by the arithmetic of $\\Z/10$ alone",
+  "no non-trivial symmetry",
+  "no admissible word uses rungs",
+  "fixed, countable set",
+  "never reverses the coarse order"
+ ],
+ "scan_for_forbidden": [
+  "01-report/report.tex",
+  "02-lean/*.md",
+  "02-lean/*.lean",
+  "03-docs/*.md",
+  "05-handoff/REVIEW.md",
+  "README.md"
+ ],
+ "files": [
+  {
+   "path": ".github/workflows/lean-proofs.yml",
+   "bytes": 1511,
+   "sha256": "3d207df6bf9f3130119d6e1793e3d40e182d72ff623aa466f741cc3bdb71245d"
+  },
+  {
+   "path": "01-report/figures/fig1_census.pdf",
+   "bytes": 20665,
+   "sha256": "f7c3c120c7db220ef7ed1e7c7ce2e8846fc11e8addbf35066daead377eda26ea"
+  },
+  {
+   "path": "01-report/figures/fig2_classes.pdf",
+   "bytes": 18436,
+   "sha256": "bbb5edd5ba61bdcceccbf0ead4a27211f4e0b938f117ef3f842745c3a7c378f5"
+  },
+  {
+   "path": "01-report/figures/fig3_ladder.pdf",
+   "bytes": 20439,
+   "sha256": "dc9f2b992177146e72f2f071b2b93457d799d2b73062b01f13a2cf8d7d21e831"
+  },
+  {
+   "path": "01-report/figures/fig5_obstruction.pdf",
+   "bytes": 17235,
+   "sha256": "5f7dad4c71beb4517c98af8f867cc3fff44c4bda13287439bd6a1a0ccd20b0d4"
+  },
+  {
+   "path": "01-report/report.html",
+   "bytes": 687083,
+   "sha256": "8f5d9d8852bca591f94e8160744b130e0ed03c159cb0cdda3f148b793db70eff"
+  },
+  {
+   "path": "01-report/report.pdf",
+   "bytes": 188026,
+   "sha256": "433231ed475187f9fab4f38b23def6c28f281441c0cdbc53ec29df65cd337333"
+  },
+  {
+   "path": "01-report/report.tex",
+   "bytes": 48459,
+   "sha256": "86b15d1ec7a254c184ccb2f7f7c29bdd2e6be8e1fb1bddca47c3daac149c274e"
+  },
+  {
+   "path": "02-lean/Census.lean",
+   "bytes": 15798,
+   "sha256": "e4bb3a8a6652fa7da57aecc7b73562b6ab8e0cfa9228523f6358c0b8e5a67176"
+  },
+  {
+   "path": "02-lean/EJPrime.lean",
+   "bytes": 5331,
+   "sha256": "9cc3f2e76bb8e465506e890e1ef0af79fe1ef44845f3faafcca68669df095d03"
+  },
+  {
+   "path": "02-lean/README.md",
+   "bytes": 6374,
+   "sha256": "0d8d92c416257382eb5bee34e78783f40168045cb586b282d26509df8cb6b3af"
+  },
+  {
+   "path": "02-lean/Wheel.lean",
+   "bytes": 7212,
+   "sha256": "5dd06bdbdc67352dbd78b96c1b514567c1fefe5de8314bc3b5adb7ac223d7d75"
+  },
+  {
+   "path": "03-docs/COLOUR_WHEEL.md",
+   "bytes": 9942,
+   "sha256": "1a552e701ce776814a61063d20adc866daa56f52af0cc0408f41632fe09ebdea"
+  },
+  {
+   "path": "03-docs/CURRENT_ART.md",
+   "bytes": 6220,
+   "sha256": "8b97c138d71a07e8cad12cebc5a92fdc80c4c7cda5f500e6b99aac7242dc3628"
+  },
+  {
+   "path": "03-docs/FACTS.md",
+   "bytes": 6155,
+   "sha256": "0ba9ab16ab7fe75a94911bd7e1051e7953dcdcd7044e8ccd0822dd942202e019"
+  },
+  {
+   "path": "03-docs/FAILURE_ANALYSIS.md",
+   "bytes": 7336,
+   "sha256": "31a23856c89c7f6bbaa3544837c3e4a7c4b9b9f115043e1b4c883932b6c7f56c"
+  },
+  {
+   "path": "03-docs/FINAL_STATEMENT.md",
+   "bytes": 6346,
+   "sha256": "f02c57987ac6f22bcf3a217ce612aa30cc04347031b56f70cef5b1db2b5f23d4"
+  },
+  {
+   "path": "03-docs/HARMONIC_LEVELS.md",
+   "bytes": 5370,
+   "sha256": "88fcfa8ecc59b4ab1574cbc93e92ca447f9eb5a57bd1d5703b4616eadc8cefd6"
+  },
+  {
+   "path": "03-docs/LEAN_WALKTHROUGH.md",
+   "bytes": 9018,
+   "sha256": "094a419b47e1246b6006956831343540389d23ac284c39608e2905a983c4cb1b"
+  },
+  {
+   "path": "03-docs/NSTEP_CENSUS.md",
+   "bytes": 3088,
+   "sha256": "c2aff01730be09ca29af3e64e28d3256637b2af5597d5ff05da9d76a816e11dc"
+  },
+  {
+   "path": "03-docs/PAPER_UPDATE.md",
+   "bytes": 13040,
+   "sha256": "c125447a326142a901704312e357e1bd9076041fd7f2f9d12f6388eefe634b5f"
+  },
+  {
+   "path": "03-docs/PRIMALITY.md",
+   "bytes": 5881,
+   "sha256": "05cac4013820d23d3f5e41ea8e41cc39f8cde84338c09270fa1e9be9a1710f65"
+  },
+  {
+   "path": "03-docs/CORRECTIONS.md",
+   "bytes": 2065,
+   "sha256": "8c41b5aba87403d17cb758fc13875a89b43d2122eebe75f34bc115f79f3dc6e8"
+  },
+  {
+   "path": "03-docs/SEGMENT_GAPS.md",
+   "bytes": 3670,
+   "sha256": "5fc84996aa034c7de62aaaa1136b472c453f9fbcc8950726ace0061febb2a19f"
+  },
+  {
+   "path": "03-docs/SUMMARY.md",
+   "bytes": 7018,
+   "sha256": "4f9e8fd9954906152ec3c53aa1d5467abf44097e3d57e60d60b2d12cd7c499b9"
+  },
+  {
+   "path": "03-docs/THEOREMS.md",
+   "bytes": 14395,
+   "sha256": "9bb49a89ed9b79eb350d8ee80b2c2000dad3c38acc263a72f209b77734ffd01d"
+  },
+  {
+   "path": "03-docs/THREE_KEYS.md",
+   "bytes": 3994,
+   "sha256": "c9c182e59d17c7b01841cc997fe4d86b8695f169730dd366f2bb269c1172f058"
+  },
+  {
+   "path": "03-docs/WAYS.md",
+   "bytes": 5089,
+   "sha256": "a63d3e90dbeaa83bee20bab52dd21c19bdafa44a04efc786e21555419fd49941"
+  },
+  {
+   "path": "04-verification/beam_test.py",
+   "bytes": 3020,
+   "sha256": "c9da17a58fbe93e37ab0665ed165b6048554e86bc1498abe070b959fb37d749a"
+  },
+  {
+   "path": "04-verification/classes.py",
+   "bytes": 1782,
+   "sha256": "45e05bc2bc4e422fac4d6fdce74ce812ede7761839cb91f8e16ccd888d62ed1d"
+  },
+  {
+   "path": "04-verification/colour_z10.py",
+   "bytes": 1709,
+   "sha256": "c5730c1741bce976e83677d73b8550d373e945d89a9fcd3ed7e3ea54283b52b8"
+  },
+  {
+   "path": "04-verification/delay_check.py",
+   "bytes": 2662,
+   "sha256": "44d80fbaeceedb425397608f3e7dc0732d30643a0e534a3b3c955500de64e949"
+  },
+  {
+   "path": "04-verification/divisor_classes.py",
+   "bytes": 1798,
+   "sha256": "45962b9386eca4660ee280359f60768444f4994e87f0b16141dcb4aecb5dddda"
+  },
+  {
+   "path": "04-verification/ej_primality.py",
+   "bytes": 2873,
+   "sha256": "c4ab5f7d3b57f74a27376b1b8b7da5a92dc6eacfe2a0c097f63646d5a1621777"
+  },
+  {
+   "path": "04-verification/family_allp.py",
+   "bytes": 2565,
+   "sha256": "373d0abf93bf66a39c31bbd03371497b2950865d506e2d69df90e4b79aaa008e"
+  },
+  {
+   "path": "04-verification/final_check.py",
+   "bytes": 5394,
+   "sha256": "7fecb0efd430e6b757fe72f72aa6ea1ac702c56adba683a4491dc440539e6a81"
+  },
+  {
+   "path": "04-verification/hermitian_check.py",
+   "bytes": 2139,
+   "sha256": "bfd50ea072aa7f786424d725f86bb24f428a250ff44280d13d8e4e42f31da7bd"
+  },
+  {
+   "path": "04-verification/html_build/make_html.py",
+   "bytes": 4236,
+   "sha256": "454fd420ef68de4cc8e752017c024ddd82e81c1c22671ed59e74d9a04c4847c2"
+  },
+  {
+   "path": "04-verification/html_build/style.html",
+   "bytes": 3197,
+   "sha256": "b4212d2da06fe203ca29f0733b269217e7c0d53ad6c2e2b54e6d4890ec1c5395"
+  },
+  {
+   "path": "04-verification/make_figs.py",
+   "bytes": 5269,
+   "sha256": "2f71f9a32581d4a5961ba78b0807db1f8a71faee5e436627ff6342f4bd2804f8"
+  },
+  {
+   "path": "04-verification/nstep_census.py",
+   "bytes": 1703,
+   "sha256": "2c437ebe9a05acd575d7f9582365a105c5fce20f50550130996318b8241779c1"
+  },
+  {
+   "path": "04-verification/purple_line.py",
+   "bytes": 2426,
+   "sha256": "bcf7550d678beb2704d3706c03553df169c472eb15ef050bf0b5e3406f5abbc3"
+  },
+  {
+   "path": "04-verification/scale_check.py",
+   "bytes": 1617,
+   "sha256": "0b8836e48580dfc38581dab407646daa5437d6c371089a1cd1c73ddd676be784"
+  },
+  {
+   "path": "04-verification/spectral_locus2.py",
+   "bytes": 3091,
+   "sha256": "447e01940c3c7283cc1e2e4897f5bcc147a704cbfb95e15d233314e5fdcd9660"
+  },
+  {
+   "path": "04-verification/tm.py",
+   "bytes": 1014,
+   "sha256": "26f80df10d4d7e09cde3cb421553d4b7f803cb4ab99be4db23bb571b5ccee302"
+  },
+  {
+   "path": "04-verification/tuning_constraint.py",
+   "bytes": 2018,
+   "sha256": "5e05532afb55907bf92586772f38737e7ab6932dd8f6432fa2455d4a14d7c8d5"
+  },
+  {
+   "path": "04-verification/verify_all.py",
+   "bytes": 4745,
+   "sha256": "486950eec6586d58022d7b7f39e42efc4d0ee4aea6c82e678c83c59c1676fef2"
+  },
+  {
+   "path": "04-verification/wheel_family.py",
+   "bytes": 3463,
+   "sha256": "a1c74c634fcf78aaab564538c9ac5422d4df6179c707925d02bcd1deb94b927b"
+  },
+  {
+   "path": "05-handoff/HANDOFF.md",
+   "bytes": 10133,
+   "sha256": "e4b5925b8a96bc029c5675c3791b896e9c518215347167eb3a59eb93fdaacf8c"
+  },
+  {
+   "path": "05-handoff/PUBLISH.md",
+   "bytes": 3549,
+   "sha256": "d004e8850479b1d4da034d2a2e6093970f23ff646a23891356084fdf166d6205"
+  },
+  {
+   "path": "05-handoff/REVIEW.md",
+   "bytes": 6321,
+   "sha256": "57286870bf7bf85935ba3975f1fa9050240f8daa8dc8618328561a25a9e0cacc"
+  },
+  {
+   "path": "05-handoff/check_pack.py",
+   "bytes": 1572,
+   "sha256": "b8bb179b2f7ddcfa138f41daed05d1c3d20b738bcaf4a199ac4315176e9e105c"
+  },
+  {
+   "path": "05-handoff/push.sh",
+   "bytes": 2670,
+   "sha256": "6cc5f15577fd8e1b0c349c3a887b731379bc2345e44561b924eaa5a07ae20edf"
+  },
+  {
+   "path": "06-data/equilibrium_by_key.csv",
+   "bytes": 375,
+   "sha256": "2f135c40cf00796c67ed598f2fc0013fa830e6c83a6a9dd582f98fad804aa542"
+  },
+  {
+   "path": "06-data/key1_base_enddigit.csv",
+   "bytes": 225,
+   "sha256": "f79e5237a13bad2fbfac56da225531059849dc21f4e7312124b5acb7dc063065"
+  },
+  {
+   "path": "06-data/sample_base_pattern_1000.csv",
+   "bytes": 33833,
+   "sha256": "b33eab6df04aa35168a148e4d0f82d3e28975cb9922cbc205941d75232cdce16"
+  },
+  {
+   "path": "06-data/sample_segments_1000.csv",
+   "bytes": 105542,
+   "sha256": "fef4670f72fe3103f53c809445c13a56b69005ea2662a4abb6ea8ae68c80f8b8"
+  },
+  {
+   "path": "06-data/sample_twin_pairs_1000.csv",
+   "bytes": 91283,
+   "sha256": "770d70a8189359d249a98861914221b30476293cf38aa2b7515d6e3fe06b40e5"
+  },
+  {
+   "path": "06-data/total_gaps_5M.csv",
+   "bytes": 83714,
+   "sha256": "54b4bb7e02f9896f3fc4e3195276b2fb7db83047d2f8e10afd752b1e12569272"
+  },
+  {
+   "path": "07-lean-package/EJ/Census.lean",
+   "bytes": 15798,
+   "sha256": "e4bb3a8a6652fa7da57aecc7b73562b6ab8e0cfa9228523f6358c0b8e5a67176"
+  },
+  {
+   "path": "07-lean-package/EJ/EJPrime.lean",
+   "bytes": 5331,
+   "sha256": "9cc3f2e76bb8e465506e890e1ef0af79fe1ef44845f3faafcca68669df095d03"
+  },
+  {
+   "path": "07-lean-package/EJ/Wheel.lean",
+   "bytes": 7212,
+   "sha256": "5dd06bdbdc67352dbd78b96c1b514567c1fefe5de8314bc3b5adb7ac223d7d75"
+  },
+  {
+   "path": "07-lean-package/EJ.lean",
+   "bytes": 196,
+   "sha256": "294ff202eeb3083788610caaa28e07a4187860e4e7b0e739349748edb9b90aeb"
+  },
+  {
+   "path": "07-lean-package/EXPECTED_OUTPUT.txt",
+   "bytes": 2159,
+   "sha256": "7931c33b39a8b35fb7a709a2f1086a49afa38da76218a2df0b85209e0e4f955f"
+  },
+  {
+   "path": "07-lean-package/README.md",
+   "bytes": 5076,
+   "sha256": "d3af75f5063b321cc493be756ad2627f75e385925645ac9a7b62128ce3b3cdd3"
+  },
+  {
+   "path": "07-lean-package/lakefile.toml",
+   "bytes": 187,
+   "sha256": "640a923fb9dd95fdf98d19fc3e21550fbf3fecdfe3f7c8d78912f6e24ace4e29"
+  },
+  {
+   "path": "07-lean-package/lean-toolchain",
+   "bytes": 25,
+   "sha256": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"
+  },
+  {
+   "path": "CHANGES.md",
+   "bytes": 10570,
+   "sha256": "a6eca617db987aba1c9009b73aa7e9ea33b4b06fb27ba021b0b19ded855f4df5"
+  },
+  {
+   "path": "CITATION.cff",
+   "bytes": 809,
+   "sha256": "e53b012fc3db8b8aa21fc83c97b7bcb0d168e6b194cbe01570c935e6ea81298d"
+  },
+  {
+   "path": "README.md",
+   "bytes": 7318,
+   "sha256": "5a20f82c98c0e68e53e6ba2b44e8ab5c191d7aabe246415c3ee2f602ce27c07a"
+  }
+ ],
+ "attribution_note": "A related document, Advanced Color Theory in Relations to Primes (Elizabeth Johnson and Shaun Neer, October 2026), lists a second author; attribution of the colour scheme and mixing rules, credited here to Elizabeth Johnson, is still being verified with the authors."
+}

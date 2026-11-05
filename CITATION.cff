@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below. The underlying framework is Elizabeth Johnson's own and should be cited to her alone (DOI 10.5281/zenodo.23378596). Attribution of the colour scheme is still being verified with the authors."
+title: "Machine-checked fragments of a base-10 prime pattern"
+version: "7"
+date-released: 2026-11-05
+authors:
+  - given-names: Elizabeth
+    family-names: Johnson
+    alias: Ellyrox110
+  - given-names: Jeromie
+    family-names: Beasley
+    orcid: "https://orcid.org/0009-0006-4645-5643"
+references:
+  - type: article
+    title: "EJ's Alternate Base Prime Number Pattern and the Twin Prime Counterflow Model"
+    authors:
+      - given-names: Elizabeth
+        family-names: Johnson
+        alias: Ellyrox110
+    doi: 10.5281/zenodo.23378596
